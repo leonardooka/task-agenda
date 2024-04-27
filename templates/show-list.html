@@ -1,0 +1,42 @@
+{% include "header.html" %}
+{% include "navbars.html" %}
+				<div class="solo-list-head" id="solo-list-head">
+					<div class="list-name" id="list-name">{{list.list}}</div>
+					<div class="add-del-buttons">
+						<a href="{{url_for('new_task', list_name=list.list, list_id=list.id)}}" class="add-task-link">
+						<button type="button" class="add-task">Add Task</button>
+						</a>
+						<a href="{{url_for('delete_list', list_id=list.id)}}" class="delete-list-link">
+						<button type="button" class="delete-list">Delete List</button>
+						</a>
+					</div>
+				</div>
+				<div class="container px-4 py-1" id="list-container">
+					<ul class="list-group" id="task-table">
+						{% for i in range(len_tasks) %}
+						{% set task = tasks[i] %}
+						{% set var = i + 1 %}
+						<li class="solo-task-list">
+							<div class="check-img">
+<!--								<input class="form-check-input ms-2" type="checkbox" value="" id={{var|string}}>-->
+<!--								<label class="form-check-label" ></label>-->
+								<label class="checkbox container">
+								  <input class="new-checkbox" value="" type="checkbox" id={{var|string}}>
+								  <span class="checkmark"></span>
+								</label>
+								{% if task.img != "" %}
+								<img src="https://github.com/mdo.png" alt="" width="40" height="40" class="rounded-circle mx-3">
+								{% endif %}
+							</div>
+							<div class="task-delete">
+								<span class="task">{{ task.task }}</span>
+								<a href="{{url_for('delete_task', task_id=task.id) }}"><button type="button" class="delete" id="delete">Delete</button></a>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+{% include "footer.html" %}

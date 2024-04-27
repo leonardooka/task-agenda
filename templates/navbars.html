@@ -1,0 +1,48 @@
+<body>
+<!-- main -->
+ <div class="main-body">
+		<a href="/home"><div class="centered" id="task-agenda">TASK AGENDA</div></a>
+		<div class="main-row" id="main-row">
+<!-- sidebar -->
+			<div class="side-column col-md-4" id="side-column">
+				<div class="row d-flex align-items-center flex-shrink-0 link-body-emphasis text-decoration-none" id="sidebar-head">
+					<span class="col-md-8" id="task-lists">Task Lists</span>
+					<a href="{{url_for('new_list')}}" class="col-md-4">
+						<button type="button" class="add-list">Add List</button>
+					</a>
+				</div>
+				<div class="list-group list-group-flush border-bottom scrollarea">
+				{% for list in all_lists %}
+				<a href="{{ url_for('show_list', list_id=list.id) }}" class="list-group-item list-group-item-action active py-3 lh-sm border-secondary" aria-current="true" id="solo-list">
+					<div class="list-container">
+						<div class="list-title d-flex w-100">
+							<strong class="mb-1" id="solo-list-name">{{list.list}}</strong>
+							{% if list.total_tasks == None %}
+							<div class="total-tasks col-10 mb-1 small">No Tasks</div>
+							{% elif list.total_tasks == 1 %}
+							<div class="total-tasks col-10 mb-1 small">{{list.total_tasks}} Task</div>
+							{% else %}
+							<div class="total-tasks col-10 mb-1 small">{{list.total_tasks}} Tasks</div>
+							{% endif %}
+						</div>
+						<div class="list-progress" id="{{list.list}}"></div>
+					</div>
+				</a>
+
+				{% endfor %}
+
+				</div>
+				<div class="dropdown" id="avatar">
+			      <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true" id="dropdown">
+			        <img src="{{user.email | gravatar}}" alt="" width="44" height="44" class="rounded-circle me-2">
+			        <strong class="user">Saitou</strong>
+			      </a>
+			      <ul class="dropdown-menu text-small shadow" data-popper-placement="top-start" id="dropdown-menu" style="position: absolute; inset: auto auto 0px 0px; margin: 10px; transform: translate3d(0px, -34px, 0px);">
+			        <li><a class="dropdown-item" href="{{url_for('new_list')}}">New List</a></li>
+			        <li><hr class="dropdown-divider"></li>
+			        <li><a class="dropdown-item" href="{{url_for('logout')}}">Logout</a></li>
+			      </ul>
+			    </div>
+			</div>
+			<div class="main-column col-md-8" id="main-column">
+

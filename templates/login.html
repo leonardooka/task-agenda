@@ -1,0 +1,18 @@
+{% from "bootstrap5/form.html" import render_form %}
+{% include "header.html" %}
+
+<body>
+ <div class="main-body">
+<!-- main -->
+	<div class="container-fluid" style="height: 100%" id="navbar">
+		<a href="/"><div class="centered" id="task-agenda">TASK AGENDA</div></a>
+		<div class="row" id="main-row">
+			<div class="container" id="login">
+				<label id="login-title">Login</label>
+				{{render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+				<label id="register">Don't have account? <a href="{{url_for('register')}}">Register</a>!</label>
+			</div>
+		</div>
+	</div>
+
+{% include "footer.html" %}

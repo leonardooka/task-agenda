@@ -1,0 +1,12 @@
+{% from 'bootstrap5/form.html' import render_form %}
+{% include "header.html" %}
+{% include "navbars.html" %}
+			<div class="px-4 pt-5" id="create-new-list">Create New List</div>
+			<div class="container px-4 py-2" id="new-list">
+			{{ render_form(form, novalidate=True, button_map={"submit": "primary"}, button_style='btn-dark') }}
+			</div>
+		</div>
+	</div>
+
+
+{% include "footer.html" %}
